@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <title>My First Website</title>
+</head>
+<style>
+   html,
+   body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background: #414141;
+      color: white;
+   }
+
+   #myCarousel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      z-index: 0;
+   }
+
+   #myCarousel .carousel-inner,
+   #myCarousel .carousel-item {
+      width: 100%;
+      height: 100vh;
+   }
+
+   .carousel-item {
+      transition: transform 1s ease-in-out;
+   }
+
+   .carousel-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+   }
+
+   #myCarousel::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(65, 65, 65, 1) 100%);
+      z-index: 1;
+      pointer-events: none;
+   }
+
+   .content-overlay {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      padding-top: 120px;
+      text-align: center;
+   }
+
+   .section {
+      position: relative;
+      z-index: 2;
+      padding: 80px 50px;
+      min-height: auto;
+   }
+
+   .section::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      pointer-events: none;
+   }
+
+   .carousel-control-prev,
+   .carousel-control-next {
+      z-index: 10;
+   }
+
+   .carousel-item video {
+      display: block;
+   }
+
+   .Introduction {
+      background: rgba(65, 65, 65, 1);
+   }
+
+   .Straykids {
+      background: #ff0800;
+   }
+
+   .Enhypen {
+      background: #f3b143;
+   }
+
+   .LNGSHOT {
+      background: #bfbfbf;
+   }
+
+   .Cortis {
+      background: #6ec6ff;
+   }
+
+   .Txt {
+      background: rgb(0, 4, 255);
+   }
+
+   .Straykids::before {
+      background: linear-gradient(to bottom,
+            rgba(65, 65, 65, 1) 10%,
+            #ff0800 100%);
+   }
+
+   .Enhypen::before {
+      background: linear-gradient(to bottom,
+            #ff0800 0%,
+            #f3b143 100%);
+   }
+
+   .LNGSHOT::before {
+      background: linear-gradient(to bottom,
+            #f3b143 0%,
+            #bfbfbf 100%);
+   }
+
+   .Cortis::before {
+      background: linear-gradient(to bottom,
+            #bfbfbf 0%,
+            #6ec6ff 100%);
+   }
+
+   .Txt::before {
+      background: linear-gradient(to bottom,
+            #6ec6ff 0%,
+            rgb(0, 4, 255) 100%);
+   }
+
+   #muteBtn {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+
+      z-index: 99999;
+
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+
+      border: 2px solid white;
+      border-radius: 20px;
+
+      padding: 10px 15px;
+      cursor: pointer;
+   }
+
+   a {
+      color: white;
+      font-weight: bold;
+      text-decoration: underline;
+   }
+</style>
+
+<body data-spy="scroll" data-target="#myNavbar" data-offset="50">
+   <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+
+         <a class="navbar-brand" href="#">My Favourite Kpop Groups</a>
+
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
+            <span class="navbar-toggler-icon"></span>
+         </button>
+
+         <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="navbar-nav">
+               <li class="nav-item">
+                  <a class="nav-link" href="#section1">Introduction</a>
+               </li>
+
+               <li class="nav-item">
+                  <a class="nav-link" href="#section2">Stray Kids</a>
+               </li>
+
+               <li class="nav-item">
+                  <a class="nav-link" href="#section3">Enhypen</a>
+               </li>
+
+               <li class="nav-item">
+                  <a class="nav-link" href="#section4">LNGSHOT</a>
+               </li>
+
+               <li class="nav-item">
+                  <a class="nav-link" href="#section5">Cortis</a>
+               </li>
+               <li class="nav-item">
+                  <a class="nav-link" href="#section6">TxT</a>
+               </li>
+            </ul>
+         </div>
+
+      </nav>
+   </div>
+   <button id="muteBtn">🔇 Unmute</button>
+   <div class="content-overlay">
+
+      <h1>Welcome to My First Website!</h1>
+
+      <p>Im really happy to show you this website!</p>
+
+   </div>
+   <!-- The video background element -->
+   <div class="container-fluid p-0">
+      <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="30000">
+         <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="4"></li>
+            <li data-target="#myCarousel" data-slide-to="5"></li>
+            <li data-target="#myCarousel" data-slide-to="6"></li>
+            <li data-target="#myCarousel" data-slide-to="7"></li>
+         </ol>
+
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <video muted autoplay playsinline>
+                  <source src="xo.mp4" type="video/mp4">
+               </video>
+            </div>
+            <div class="carousel-item">
+               <video muted autoplay playsinline>
+                  <source src="redcolour.mp4" type="video/mp4">
+               </video>
+            </div>
+            <div class="carousel-item">
+               <video muted autoplay playsinline>
+                  <source src="kipe.mp4" type="video/mp4">
+               </video>
+            </div>
+            <div class="carousel-item">
+               <video muted autoplay playsinline>
+                  <source src="REBc.mp4" type="video/mp4">
+               </video>
+            </div>
+            <div class="carousel-item">
+               <video muted autoplay playsinline>
+                  <source src="Mw.mp4" type="video/mp4">
+               </video>
+            </div>
+            <div class="carousel-item">
+               <video muted autoplay playsinline>
+                  <source src="fp.mp4" type="video/mp4">
+               </video>
+            </div>
+            <div class="carousel-item">
+               <video muted autoplay playsinline>
+                  <source src="DOingit.mp4" type="video/mp4">
+               </video>
+            </div>
+            <div class="carousel-item">
+               <video muted autoplay playsinline>
+                  <source src="SWY.mp4" type="video/mp4">
+               </video>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div id="section1" class="section Introduction">
+      <h1>Section 1</h1>
+      <h5>Introduction</h5>
+      <p>This is a website about music, specifically K-pop. This will be my first website , i made many mistakes but the
+         Vs code's ai and Chatgpt helped a lot!</p>
+   </div>
+   <div id="section2" class="section Straykids">
+      <h1>Section 2</h1>
+      <h5>About Stray kids</h5>
+      <p>Stray Kids are a South Korean boy band but it's obvious that all of the groups i am talking about and korean
+         boy bands so , This group was formed by jyp entertainment and they debuted in 2018 with the album "I Am
+         Not". through a survival show called "Stray Kids" which aired on Mnet. The group consists of 8 members: 1.
+         Bangchan 2.Lee know 3.Changbin 4. Hyunjin 5.Han 6.Felix 7.Seungmin 8.Jeongin(I.N), there used to be 9
+         members but one of the members left and his name was Woojin. He later debuted as a solo artist. Stray Kids
+         rose to their name as their releases went for popular. Right now, they are the star groups in the kpop
+         industry. It has been 8 years since they debuted</p>
+      <p>
+         <a href="file:///C:/Users/SweetHome/Desktop/New%20folder%20(2)/My%20First%20Website/STRAYKIDSSSSSSSSSSSSSSSSSSSS/Stray%20Kids.html">
+            For
+            more info
+            abt the members.</a>
+      </p>
+   </div>
+   <div id="section3" class="section Enhypen">
+      <h1>Section 3</h1>
+      <h5>About Enhypen</h5>
+      <p>Enhypen is Also a South Korean boy band formed by BELIFT LAB and debuted in 2020. The group consists of 7
+         members: 1. Lee Heeseung 2. Jay 3. Park Sunghoon 4. Jake 5. Sunoo 6. Jungwon 7. Niki. They were formed by a
+         survival show named "I-LAND" , It was aired on Mnet and formed by Belift Lab under HYBE entertainment.On 10
+         March 2026, there oldest member Lee heeseung left the group. It has been 7 years since they debuted</p>
+      <p><a href="file:///C:/Users/SweetHome/Desktop/New%20folder%20(2)/My%20First%20Website/Enhypens/Enhypen.html"> For more info abt the members.</a></p>
+   </div>
+   <div id="section4" class="section LNGSHOT">
+      <h1>Section 4</h1>
+      <h5>About LNGSHOT</h5>
+      <p>LNGSHOT is a South Korean boy band formed by more vison entertainment , they debuted in 2026. The group
+         consists of 4 members: 1. Ohyul 2. Ryul 3. Woojin 4. Louise , they are a rookie group and the first group of
+         More Vision. They went viral for their singing and dances.</p>
+      <p><a href="file:///C:/Users/SweetHome/Desktop/New%20folder%20(2)/My%20First%20Website/Lngshot/LNGSHOT.html"> For more info abt the members.</a></p>
+   </div>
+   </div>
+   <div id="section5" class="section Cortis">
+      <h1>Section 5</h1>
+      <h5>About Cortis</h5>
+      <p>Cortis is a South Korean boy band formed by Hybe Entertainment and they debuted in 2025 with the album "What
+         you want", They went viral for breaking the rules of music, They consists of 5 members: 1. James 2. Juhoon
+         3. Martin 4. Seonghyeon 5. Keonho. Their songs have been going popular and they are slowly raising their
+         fandom.</p>
+         <p><a href="file:///C:/Users/SweetHome/Desktop/New%20folder%20(2)/My%20First%20Website/Cortis/Cortis.html"> For more info abt the members.</a></p>
+   </div>
+   <div id="section6" class="section Txt">
+      <h1>Section 6</h1>
+      <h5>About TxT</h5>
+      <p>TxT is a South Korean boy group known for their deep meaning song lyrics and the style of music they produce.
+         They debuted in 2019 with the album "The Dream Chapter: Star" under BigHit Entertainment. The group consists of
+         5 members: 1. Soobin 2. Yeonjun 3. Beomgyu 4. Taehyun 5. Huening Kai. They are one of the most popular
+         groups in the kpop industry and they are also one of the best selling groups in the world.</p>
+         <p><a href="file:///C:/Users/SweetHome/Desktop/New%20folder%20(2)/My%20First%20Website/Txt/TxT.html"> For more info abt the members.</a></p>
+   </div>
+   <script>
+      const videos = document.querySelectorAll('.carousel-item video');
+
+      function playVideo(video) {
+         if (video) {
+            video.play().catch(() => { });
+         }
+      }
+
+      function stopVideos() {
+         videos.forEach(video => {
+            video.pause();
+         });
+      }
+
+      window.addEventListener('load', () => {
+         playVideo(document.querySelector('.carousel-item.active video'));
+      });
+
+      $('#myCarousel').on('slide.bs.carousel', function () {
+         stopVideos();
+      });
+
+      $('#myCarousel').on('slid.bs.carousel', function () {
+         playVideo(document.querySelector('.carousel-item.active video'));
+      });
+
+      $('#myCarousel').carousel({
+         interval: 30000,
+         pause: false
+      });
+      const muteBtn = document.getElementById("muteBtn");
+      let muted = true;
+
+      muteBtn.addEventListener("click", () => {
+         muted = !muted;
+
+         videos.forEach(video => {
+            video.muted = muted;
+         });
+
+         muteBtn.textContent =
+            muted ? "🔇 Unmute" : "🔊 Mute";
+      });
+   </script>
+
+</body>
+
+</html>
